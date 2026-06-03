@@ -297,10 +297,11 @@ section{
     justify-content:center;
     gap:50px;
     padding:25px 20px;
-    background:rgba(245,240,232,0.85);
+    background:rgba(245,240,232,0.95);
     backdrop-filter:blur(12px);
     z-index:1000;
     border-bottom:1px solid rgba(0,0,0,0.04);
+    flex-wrap: wrap;  /* ← добавить: позволяет пунктам переноситься */
 }
 
 .top-nav a{
@@ -310,10 +311,33 @@ section{
     letter-spacing:2px;
     text-transform:uppercase;
     transition:.3s;
+    white-space: nowrap;  /* ← добавить: текст не ломается */
 }
 
-.top-nav a:hover{
-    opacity:.6;
+/* АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ */
+@media (max-width: 650px) {
+    .top-nav {
+        gap: 20px;  /* уменьшаем расстояние между пунктами */
+        padding: 15px 15px;  /* меньше отступы */
+    }
+    
+    .top-nav a {
+        font-size: 11px;  /* меньше шрифт */
+        letter-spacing: 1px;  /* уменьшаем межбуквенное расстояние */
+    }
+}
+
+/* Для очень маленьких экранов (iPhone SE и подобные) */
+@media (max-width: 480px) {
+    .top-nav {
+        gap: 12px;
+        padding: 12px 10px;
+    }
+    
+    .top-nav a {
+        font-size: 10px;
+        letter-spacing: 0.5px;
+    }
 }
 
 /* Декоративная картинка вверху */
@@ -391,10 +415,22 @@ section{
     opacity: 0.15;
 }
 
+/* АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ — лента по центру экрана */
 @media (max-width: 768px) {
     .silk-ribbon img {
-        width: 200%;
-        left: -50%;
+        width: 180%;
+        left: -40%;
+        top: 25%;  /* ← смещаем вниз, чтобы лента была по центру */
+        opacity: 0.12;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+    .silk-ribbon img {
+        width: 220%;
+        left: -60%;
+        top: 30%;
         opacity: 0.1;
     }
 }
